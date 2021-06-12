@@ -79,7 +79,6 @@ class listBuku(Projek2.FramePemilihanBuku):
         result = dbconfig.readDataBuku()       
         row = 0
 
-        self.m_grid1.AppendCols()
         for i in result:
             if row >= self.m_grid1.GetNumberRows():
                 self.m_grid1.AppendRows()
@@ -88,7 +87,6 @@ class listBuku(Projek2.FramePemilihanBuku):
                 self.m_grid1.SetCellValue(row,2,i[2])
                 self.m_grid1.SetCellValue(row,3,i[3])
                 self.m_grid1.SetCellValue(row,4,str(i[4]))
-                self.m_grid1.SetCellValue(row,5,str(i[5]))
                 self.m_grid1.AutoSize()
                 row += 1
             else:
@@ -97,13 +95,74 @@ class listBuku(Projek2.FramePemilihanBuku):
                 self.m_grid1.SetCellValue(row,2,i[2])
                 self.m_grid1.SetCellValue(row,3,i[3])
                 self.m_grid1.SetCellValue(row,4,str(i[4]))
-                self.m_grid1.SetCellValue(row,5,str(i[5]))
                 self.m_grid1.AutoSize()
                 row += 1
 
+    def btnPinjamBukuClick( self, event ):
+        self.Close()
+        app = App()
+        frame = bukuAdmin(parent=None)
+        frame.Show()
+        app.MainLoop()
 
+    def btnKembaliBukuClick( self, event ):
+        self.Close()
+        app = App()
+        frame = fitur(parent=None)
+        frame.Show()
+        app.MainLoop()
+
+class konfirmasiPinjam(Projek2.DialogKonfirmasiPeminjamanBuku):
+    def __init__(self, parent):
+        Projek2.DialogKonfirmasiPeminjamanBuku.__init__(self,parent)
+
+    def btnYaPinjamClick( self, event ):
+        id_buku = self.isiIdBuku.Value()
+        # Ambil dari database
+
+    def btnTidakPinjamClick( self, event ):
+        self.Close()
+        app = App()
+        frame = listBuku(parent=None)
+        frame.Show()
+        app.MainLoop()
+
+                
+
+class bukuAdmin(Projek2.FramePemilihanBuku):
+    def __init__(self, parent):
+        Projek2.FramePemilihanBuku.__init__(self,parent)
+
+        result = dbconfig.readDataBuku()       
+        row = 0
+
+        for i in result:
+            if row >= self.m_grid1.GetNumberRows():
+                self.m_grid1.AppendRows()
+                self.m_grid1.SetCellValue(row,0,str(i[0]))
+                self.m_grid1.SetCellValue(row,1,i[1])
+                self.m_grid1.SetCellValue(row,2,i[2])
+                self.m_grid1.SetCellValue(row,3,i[3])
+                self.m_grid1.SetCellValue(row,4,str(i[4]))
+                self.m_grid1.AutoSize()
+                row += 1
+            else:
+                self.m_grid1.SetCellValue(row,0,str(i[0]))
+                self.m_grid1.SetCellValue(row,1,i[1])
+                self.m_grid1.SetCellValue(row,2,i[2])
+                self.m_grid1.SetCellValue(row,3,i[3])
+                self.m_grid1.SetCellValue(row,4,str(i[4]))
+                self.m_grid1.AutoSize()
+                row += 1
+
+    def btnKembaliBukuAdminClick(self, event):
+        self.Close()
+        app = App()
+        frame = bukuAdmin(parent=None)
+        frame.Show()
+        app.MainLoop()
 
 app = App()
-frame = listBuku(parent=None)
+frame = login(parent=None)
 frame.Show()
 app.MainLoop()
