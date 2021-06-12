@@ -2,7 +2,6 @@ from wx import App
 import dbconfig
 import Projek2
 import wx
-import mysql.connector
 
 class login(Projek2.FrameLogin):
     def __init__(self, parent):
