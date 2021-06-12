@@ -434,4 +434,50 @@ class DialogLogout ( wx.Dialog ):
 	def btnTidakLogoutClick( self, event ):
 		event.Skip()
 
+###########################################################################
+## Class DialogError
+###########################################################################
+
+class DialogError ( wx.Dialog ):
+
+	def __init__( self, parent ):
+		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = u"Error", pos = wx.DefaultPosition, size = wx.Size( 409,222 ), style = wx.DEFAULT_DIALOG_STYLE )
+
+		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+
+		bSizer8 = wx.BoxSizer( wx.VERTICAL )
+
+		self.m_textCtrl4 = wx.TextCtrl( self, wx.ID_ANY, u"Password dan NIM anda salah", wx.DefaultPosition, wx.DefaultSize, wx.TE_CENTER|wx.TE_READONLY )
+		bSizer8.Add( self.m_textCtrl4, 0, wx.ALIGN_CENTER|wx.ALL|wx.EXPAND, 5 )
+
+		self.m_textCtrl5 = wx.TextCtrl( self, wx.ID_ANY, u"Tekan OK untuk kembali ke halaman login", wx.DefaultPosition, wx.DefaultSize, wx.TE_CENTER|wx.TE_READONLY )
+		bSizer8.Add( self.m_textCtrl5, 0, wx.ALIGN_CENTER|wx.ALL|wx.EXPAND, 5 )
+
+
+		bSizer8.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+		bSizer9 = wx.BoxSizer( wx.VERTICAL )
+
+		self.btnOkError = wx.Button( self, wx.ID_ANY, u"OK", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer9.Add( self.btnOkError, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
+
+
+		bSizer8.Add( bSizer9, 1, wx.EXPAND, 5 )
+
+
+		self.SetSizer( bSizer8 )
+		self.Layout()
+
+		self.Centre( wx.BOTH )
+
+		# Connect Events
+		self.btnOkError.Bind( wx.EVT_BUTTON, self.btnOkErrorClick )
+
+	def __del__( self ):
+		pass
+
+
+	# Virtual event handlers, overide them in your derived class
+	def btnOkErrorClick( self, event ):
+		event.Skip()
 
