@@ -3,71 +3,82 @@ import dbconfig
 import Projek2
 import wx
 
-class login(Projek2.FrameLogin):
+name = ''
+
+class DialogError(Projek2.DialogError):
+    def __init__(self, parent):
+        super().__init__(parent)
+
+    def btnOkErrorClick(self, event):
+        self.Close()
+
+class FramePemilihanBukuAdmin(Projek2.FramePemilihanBukuAdmin):
+    def __init__(self, parent):
+        super().__init__(parent)
+
+class Login(Projek2.FrameLogin):
     def __init__(self, parent):
         Projek2.FrameLogin.__init__(self, parent)
 
     def btnOkLoginClick( self, event ):
+        global name
+
         email = self.m_textCtrl3.GetValue()
         password = self.m_textCtrl4.GetValue()
 
         emailPass = dbconfig.getEmailPass(email)
 
-        if emailPass != None and password == emailPass[1]:
-            self.Close()
-            app = App()
-            frame = fitur(parent=None)
-            frame.Show()
-            app.MainLoop()
-        else:
-            print("Salah")
-            self.Close()
+        name = dbconfig.getName(email)[0]
 
-class fitur(Projek2.FrameFitur):
-    def __init__(self, parent):
+        if emailPass != None and password == emailPass[1] and emailPass[2] != 1:
+            self.Close()
+            frame = Fitur(None, name)
+            frame.Show()
+        elif emailPass != None and password == emailPass[1] and emailPass[2] != 0:
+            self.Close()
+            frame = FramePemilihanBukuAdmin(None)
+            frame.Show()
+        else:
+            frame = DialogError(None)
+            frame.Show()
+
+class Fitur(Projek2.FrameFitur):
+    def __init__(self, parent, name):
         Projek2.FrameFitur.__init__(self, parent)
+        self.m_staticText9.SetValue(name)
 
     def btnPinjamBukuClick( self, event ):
         self.Close()
-        app = App()
-        frame = listBuku(parent=None)
+        frame = ListBuku(parent=None)
         frame.Show()
-        app.MainLoop()
 
     def btnListBukuClick( self, event ):
         self.Close()
-        app = App()
-        frame = listBuku(parent=None)
+        frame = ListBuku(parent=None)
         frame.Show()
-        app.MainLoop()
 
     def btnLogoutClick( self, event ):
-        app = App()
-        frame = logout(parent=None)
+        frame = Logout(None)
         frame.Show()
-        app.MainLoop()
+        self.Close()
 
-class logout(Projek2.DialogLogout):
+class Logout(Projek2.DialogLogout):
     def __init__(self, parent):
         Projek2.DialogLogout.__init__(self,parent)
 
     def btnYaLogoutClick( self, event ):
         self.Close()
-        app = App()
-        frame = listBuku(parent=None)
+        frame = ListBuku(parent=None)
         frame.Close()
-        frame = login(parent=None)
+        frame = Login(parent=None)
         frame.Show()
-        app.MainLoop()
 
     def btnTidakLogoutClick( self, event ):
         self.Close()
-        # app = App()
-        # frame = listBuku(parent=None)
-        # frame.Close()
-        # app.MainLoop()
+        frame = Fitur(None)
+        frame.Show()
 
-class listBuku(Projek2.FramePemilihanBuku):
+class ListBuku(Projek2.FramePemilihanBuku):
     def __init__(self, parent):
         Projek2.FramePemilihanBuku.__init__(self,parent)
 
@@ -76,34 +87,32 @@ class listBuku(Projek2.FramePemilihanBuku):
         self.m_staticText9.SetFont(font)
         # self..Add(wx.ALIGN_CENTER)
 
-        result = dbconfig.readDataBuku()       
-        row = 0
+        # result = dbconfig.readDataBuku()       
+        # row = 0
 
-        self.m_grid1.AppendCols()
-        for i in result:
-            if row >= self.m_grid1.GetNumberRows():
-                self.m_grid1.AppendRows()
-                self.m_grid1.SetCellValue(row,0,str(i[0]))
-                self.m_grid1.SetCellValue(row,1,i[1])
-                self.m_grid1.SetCellValue(row,2,i[2])
-                self.m_grid1.SetCellValue(row,3,i[3])
-                self.m_grid1.SetCellValue(row,4,str(i[4]))
-                self.m_grid1.SetCellValue(row,5,str(i[5]))
-                self.m_grid1.AutoSize()
-                row += 1
-            else:
-                self.m_grid1.SetCellValue(row,0,str(i[0]))
-                self.m_grid1.SetCellValue(row,1,i[1])
-                self.m_grid1.SetCellValue(row,2,i[2])
-                self.m_grid1.SetCellValue(row,3,i[3])
-                self.m_grid1.SetCellValue(row,4,str(i[4]))
-                self.m_grid1.SetCellValue(row,5,str(i[5]))
-                self.m_grid1.AutoSize()
-                row += 1
-
-
+        # self.m_grid1.AppendCols()
+        # for i in result:
+        #     if row >= self.m_grid1.GetNumberRows():
+        #         self.m_grid1.AppendRows()
+        #         self.m_grid1.SetCellValue(row,0,str(i[0]))
+        #         self.m_grid1.SetCellValue(row,1,i[1])
+        #         self.m_grid1.SetCellValue(row,2,i[2])
+        #         self.m_grid1.SetCellValue(row,3,i[3])
+        #         self.m_grid1.SetCellValue(row,4,str(i[4]))
+        #         self.m_grid1.SetCellValue(row,5,str(i[5]))
+        #         self.m_grid1.AutoSize()
+        #         row += 1
+        #     else:
+        #         self.m_grid1.SetCellValue(row,0,str(i[0]))
+        #         self.m_grid1.SetCellValue(row,1,i[1])
+        #         self.m_grid1.SetCellValue(row,2,i[2])
+        #         self.m_grid1.SetCellValue(row,3,i[3])
+        #         self.m_grid1.SetCellValue(row,4,str(i[4]))
+        #         self.m_grid1.SetCellValue(row,5,str(i[5]))
+        #         self.m_grid1.AutoSize()
+        #         row += 1
 
 app = App()
-frame = listBuku(parent=None)
+frame = Login(parent=None)
 frame.Show()
 app.MainLoop()
