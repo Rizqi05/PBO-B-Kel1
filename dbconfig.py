@@ -16,3 +16,8 @@ def getEmailPass(email):
     result = mycursor.fetchone()
 
     return result
+
+def readDataBuku():
+    mycursor.execute("SELECT * FROM authors")
+    result = mycursor.fetchall()
+    return result       

@@ -1,6 +1,8 @@
 from wx import App
 import dbconfig
 import Projek2
+import wx
+import mysql.connector
 
 class login(Projek2.FrameLogin):
     def __init__(self, parent):
@@ -70,9 +72,39 @@ class listBuku(Projek2.FramePemilihanBuku):
     def __init__(self, parent):
         Projek2.FramePemilihanBuku.__init__(self,parent)
 
+        self.m_staticText9.SetLabel("Perpustakaan Daerah")
+        font = wx.Font(20, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Consolas')
+        self.m_staticText9.SetFont(font)
+        # self..Add(wx.ALIGN_CENTER)
+
+        result = dbconfig.readDataBuku()       
+        row = 0
+
+        self.m_grid1.AppendCols()
+        for i in result:
+            if row >= self.m_grid1.GetNumberRows():
+                self.m_grid1.AppendRows()
+                self.m_grid1.SetCellValue(row,0,str(i[0]))
+                self.m_grid1.SetCellValue(row,1,i[1])
+                self.m_grid1.SetCellValue(row,2,i[2])
+                self.m_grid1.SetCellValue(row,3,i[3])
+                self.m_grid1.SetCellValue(row,4,str(i[4]))
+                self.m_grid1.SetCellValue(row,5,str(i[5]))
+                self.m_grid1.AutoSize()
+                row += 1
+            else:
+                self.m_grid1.SetCellValue(row,0,str(i[0]))
+                self.m_grid1.SetCellValue(row,1,i[1])
+                self.m_grid1.SetCellValue(row,2,i[2])
+                self.m_grid1.SetCellValue(row,3,i[3])
+                self.m_grid1.SetCellValue(row,4,str(i[4]))
+                self.m_grid1.SetCellValue(row,5,str(i[5]))
+                self.m_grid1.AutoSize()
+                row += 1
+
 
 
 app = App()
-frame = login(parent=None)
+frame = listBuku(parent=None)
 frame.Show()
 app.MainLoop()
