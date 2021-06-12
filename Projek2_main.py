@@ -75,7 +75,7 @@ class Logout(Projek2.DialogLogout):
 
     def btnTidakLogoutClick( self, event ):
         self.Close()
-        frame = Fitur(None)
+        frame = Fitur(None, name)
         frame.Show()
 
 class ListBuku(Projek2.FramePemilihanBuku):
@@ -87,7 +87,8 @@ class ListBuku(Projek2.FramePemilihanBuku):
         self.m_staticText9.SetFont(font)
         # self..Add(wx.ALIGN_CENTER)
 
-        # result = dbconfig.readDataBuku()       
+        result = dbconfig.getAllBook()
+
         # row = 0
 
         # self.m_grid1.AppendCols()

@@ -24,3 +24,11 @@ def getName(email):
   result = mycursor.fetchone()
   
   return result
+
+def getAllBook():
+  query = 'SELECT * FROM buku'
+  mycursor.execute(query)
+
+  result = mycursor.fetchall()
+
+  return result
