@@ -71,7 +71,7 @@ class listBuku(Projek2.FramePemilihanBuku):
     def __init__(self, parent):
         Projek2.FramePemilihanBuku.__init__(self,parent)
 
-        self.m_staticText9.SetLabel("Perpustakaan Daerah")
+        # self.m_staticText9.SetLabel("Perpustakaan Daerah")
         font = wx.Font(20, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Consolas')
         self.m_staticText9.SetFont(font)
         # self..Add(wx.ALIGN_CENTER)
