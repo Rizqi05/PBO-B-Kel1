@@ -90,7 +90,7 @@ class FrameFitur ( wx.Frame ):
 
 		bSizer2 = wx.BoxSizer( wx.VERTICAL )
 
-		self.m_staticText7 = wx.StaticText( self, wx.ID_ANY, u"Perpus Indah", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText7 = wx.StaticText( self, wx.ID_ANY, u"[Nama Perpustakaan]", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText7.Wrap( -1 )
 
 		bSizer2.Add( self.m_staticText7, 0, wx.ALL, 5 )
@@ -148,7 +148,7 @@ class FramePemilihanBuku ( wx.Frame ):
 
 		bSizer3 = wx.BoxSizer( wx.VERTICAL )
 
-		self.m_staticText9 = wx.StaticText( self, wx.ID_ANY, u"Perpus Indah", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText9 = wx.StaticText( self, wx.ID_ANY, u"[Nama Perpustakaan]", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText9.Wrap( -1 )
 
 		bSizer3.Add( self.m_staticText9, 0, wx.ALL, 5 )
@@ -179,10 +179,22 @@ class FramePemilihanBuku ( wx.Frame ):
 		self.m_grid1.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Label Appearance
+		self.m_grid1.SetLabelFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
 
 		# Cell Defaults
 		self.m_grid1.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
-		bSizer3.Add( self.m_grid1, 0, wx.ALL, 5 )
+		bSizer3.Add( self.m_grid1, 0, wx.ALL|wx.EXPAND, 5 )
+
+		gSizer3 = wx.GridSizer( 0, 2, 0, 0 )
+
+		self.btnPinjamBuku = wx.Button( self, wx.ID_ANY, u"Pinjam", wx.DefaultPosition, wx.DefaultSize, 0 )
+		gSizer3.Add( self.btnPinjamBuku, 0, wx.ALL, 5 )
+
+		self.btnKembaliBuku = wx.Button( self, wx.ID_ANY, u"Kembali", wx.DefaultPosition, wx.DefaultSize, 0 )
+		gSizer3.Add( self.btnKembaliBuku, 0, wx.ALL, 5 )
+
+
+		bSizer3.Add( gSizer3, 1, wx.EXPAND, 5 )
 
 
 		self.SetSizer( bSizer3 )
@@ -190,8 +202,20 @@ class FramePemilihanBuku ( wx.Frame ):
 
 		self.Centre( wx.BOTH )
 
+		# Connect Events
+		self.btnPinjamBuku.Bind( wx.EVT_BUTTON, self.btnPinjamBukuClick )
+		self.btnKembaliBuku.Bind( wx.EVT_BUTTON, self.btnKembaliBukuClick )
+
 	def __del__( self ):
 		pass
+
+
+	# Virtual event handlers, overide them in your derived class
+	def btnPinjamBukuClick( self, event ):
+		event.Skip()
+
+	def btnKembaliBukuClick( self, event ):
+		event.Skip()
 
 
 ###########################################################################
@@ -212,7 +236,7 @@ class FramePemilihanBukuAdmin ( wx.Frame ):
 
 		bSizer3.Add( self.m_staticText15, 0, wx.ALL, 5 )
 
-		self.m_staticText9 = wx.StaticText( self, wx.ID_ANY, u"Perpus Indah", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText9 = wx.StaticText( self, wx.ID_ANY, u"[Nama Perpustakaan]", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText9.Wrap( -1 )
 
 		bSizer3.Add( self.m_staticText9, 0, wx.ALL, 5 )
@@ -248,69 +272,16 @@ class FramePemilihanBukuAdmin ( wx.Frame ):
 		self.m_grid1.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
 		bSizer3.Add( self.m_grid1, 0, wx.ALL, 5 )
 
+		gSizer3 = wx.GridSizer( 0, 2, 0, 0 )
 
-		self.SetSizer( bSizer3 )
-		self.Layout()
+		self.btnPinjamBukuAdmin = wx.Button( self, wx.ID_ANY, u"Pinjam", wx.DefaultPosition, wx.DefaultSize, 0 )
+		gSizer3.Add( self.btnPinjamBukuAdmin, 0, wx.ALL, 5 )
 
-		self.Centre( wx.BOTH )
-
-	def __del__( self ):
-		pass
+		self.btnKembaliBukuAdmin = wx.Button( self, wx.ID_ANY, u"Kembali", wx.DefaultPosition, wx.DefaultSize, 0 )
+		gSizer3.Add( self.btnKembaliBukuAdmin, 0, wx.ALL, 5 )
 
 
-###########################################################################
-## Class FramePemilihanBukuAdmin
-###########################################################################
-
-class FramePemilihanBukuAdmin ( wx.Frame ):
-
-	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 781,692 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
-
-		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
-
-		bSizer3 = wx.BoxSizer( wx.VERTICAL )
-
-		self.m_staticText14 = wx.StaticText( self, wx.ID_ANY, u"Selamat Datang Admin", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText14.Wrap( -1 )
-
-		bSizer3.Add( self.m_staticText14, 0, wx.ALL, 5 )
-
-		self.m_staticText9 = wx.StaticText( self, wx.ID_ANY, u"Perpus Indah", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText9.Wrap( -1 )
-
-		bSizer3.Add( self.m_staticText9, 0, wx.ALL, 5 )
-
-		self.m_staticText17 = wx.StaticText( self, wx.ID_ANY, u"List Buku", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText17.Wrap( -1 )
-
-		bSizer3.Add( self.m_staticText17, 0, wx.ALL, 5 )
-
-		self.m_grid1 = wx.grid.Grid( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
-
-		# Grid
-		self.m_grid1.CreateGrid( 5, 5 )
-		self.m_grid1.EnableEditing( True )
-		self.m_grid1.EnableGridLines( True )
-		self.m_grid1.EnableDragGridSize( False )
-		self.m_grid1.SetMargins( 0, 0 )
-
-		# Columns
-		self.m_grid1.EnableDragColMove( False )
-		self.m_grid1.EnableDragColSize( True )
-		self.m_grid1.SetColLabelSize( 30 )
-		self.m_grid1.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
-
-		# Rows
-		self.m_grid1.EnableDragRowSize( True )
-		self.m_grid1.SetRowLabelSize( 80 )
-		self.m_grid1.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
-
-		# Label Appearance
-
-		# Cell Defaults
-		self.m_grid1.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
-		bSizer3.Add( self.m_grid1, 0, wx.ALL, 5 )
+		bSizer3.Add( gSizer3, 1, wx.EXPAND, 5 )
 
 
 		self.SetSizer( bSizer3 )
@@ -318,8 +289,20 @@ class FramePemilihanBukuAdmin ( wx.Frame ):
 
 		self.Centre( wx.BOTH )
 
+		# Connect Events
+		self.btnPinjamBukuAdmin.Bind( wx.EVT_BUTTON, self.btnPinjamBukuAdminClick )
+		self.btnKembaliBukuAdmin.Bind( wx.EVT_BUTTON, self.btnKembaliBukuAdminClick )
+
 	def __del__( self ):
 		pass
+
+
+	# Virtual event handlers, overide them in your derived class
+	def btnPinjamBukuAdminClick( self, event ):
+		event.Skip()
+
+	def btnKembaliBukuAdminClick( self, event ):
+		event.Skip()
 
 
 ###########################################################################
@@ -335,10 +318,13 @@ class DialogKonfirmasiPeminjamanBuku ( wx.Dialog ):
 
 		bSizer4 = wx.BoxSizer( wx.VERTICAL )
 
-		self.m_staticText10 = wx.StaticText( self, wx.ID_ANY, u"Apakah anda yakin untuk meminjam buku [Nama Buku]?", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText10 = wx.StaticText( self, wx.ID_ANY, u"Apakah anda yakin untuk meminjam buku dengan id", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText10.Wrap( -1 )
 
 		bSizer4.Add( self.m_staticText10, 0, wx.ALL, 5 )
+
+		self.isiIdBuku = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer4.Add( self.isiIdBuku, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
 
 
 		bSizer4.Add( ( 0, 0), 1, wx.EXPAND, 5 )
@@ -434,6 +420,7 @@ class DialogLogout ( wx.Dialog ):
 	def btnTidakLogoutClick( self, event ):
 		event.Skip()
 
+
 ###########################################################################
 ## Class DialogError
 ###########################################################################
@@ -480,4 +467,5 @@ class DialogError ( wx.Dialog ):
 	# Virtual event handlers, overide them in your derived class
 	def btnOkErrorClick( self, event ):
 		event.Skip()
+
 
