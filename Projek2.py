@@ -90,7 +90,7 @@ class FrameFitur ( wx.Frame ):
 
 		bSizer2 = wx.BoxSizer( wx.VERTICAL )
 
-		self.m_staticText7 = wx.StaticText( self, wx.ID_ANY, u"[Nama Perpustakaan]", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText7 = wx.StaticText( self, wx.ID_ANY, u"Perpus Indah", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText7.Wrap( -1 )
 
 		bSizer2.Add( self.m_staticText7, 0, wx.ALL, 5 )
@@ -148,7 +148,7 @@ class FramePemilihanBuku ( wx.Frame ):
 
 		bSizer3 = wx.BoxSizer( wx.VERTICAL )
 
-		self.m_staticText9 = wx.StaticText( self, wx.ID_ANY, u"[Nama Perpustakaan]", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText9 = wx.StaticText( self, wx.ID_ANY, u"Perpus Indah", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText9.Wrap( -1 )
 
 		bSizer3.Add( self.m_staticText9, 0, wx.ALL, 5 )
@@ -212,7 +212,7 @@ class FramePemilihanBukuAdmin ( wx.Frame ):
 
 		bSizer3.Add( self.m_staticText15, 0, wx.ALL, 5 )
 
-		self.m_staticText9 = wx.StaticText( self, wx.ID_ANY, u"[Nama Perpustakaan]", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText9 = wx.StaticText( self, wx.ID_ANY, u"Perpus Indah", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText9.Wrap( -1 )
 
 		bSizer3.Add( self.m_staticText9, 0, wx.ALL, 5 )
@@ -276,7 +276,7 @@ class FramePemilihanBukuAdmin ( wx.Frame ):
 
 		bSizer3.Add( self.m_staticText14, 0, wx.ALL, 5 )
 
-		self.m_staticText9 = wx.StaticText( self, wx.ID_ANY, u"[Nama Perpustakaan]", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText9 = wx.StaticText( self, wx.ID_ANY, u"Perpus Indah", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText9.Wrap( -1 )
 
 		bSizer3.Add( self.m_staticText9, 0, wx.ALL, 5 )

@@ -1,5 +1,5 @@
 from wx import App
-import mysql.connector
+import dbconfig
 import Projek2
 
 class login(Projek2.FrameLogin):
@@ -7,10 +7,12 @@ class login(Projek2.FrameLogin):
         Projek2.FrameLogin.__init__(self, parent)
 
     def btnOkLoginClick( self, event ):
-        self.m_textCtrl3.GetValue()
-        self.m_textCtrl4.GetValue()
+        email = self.m_textCtrl3.GetValue()
+        password = self.m_textCtrl4.GetValue()
 
-        if self.m_textCtrl3.GetValue() == "Wahid" and self.m_textCtrl4.GetValue() == "wahid28":
+        emailPass = dbconfig.getEmailPass(email)
+
+        if emailPass != None and password == emailPass[1]:
             self.Close()
             app = App()
             frame = fitur(parent=None)
