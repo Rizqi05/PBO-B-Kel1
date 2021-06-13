@@ -95,8 +95,8 @@ class FrameFitur ( wx.Frame ):
 
 		bSizer2.Add( self.m_staticText7, 0, wx.ALL, 5 )
 
-		self.m_staticText9 = wx.StaticText( self, wx.ID_ANY, u"[Nama Peminjam]", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText9.Wrap( -1 )
+		self.m_staticText9 = wx.TextCtrl( self, wx.ID_ANY, u"[Nama Peminjam]", wx.DefaultPosition, wx.DefaultSize, wx.TE_CENTER|wx.TE_READONLY )
+		# self.m_staticText9.Wrap( -1 )
 
 		bSizer2.Add( self.m_staticText9, 0, wx.ALL, 5 )
 
@@ -434,11 +434,11 @@ class DialogError ( wx.Dialog ):
 
 		bSizer8 = wx.BoxSizer( wx.VERTICAL )
 
-		self.m_textCtrl4 = wx.TextCtrl( self, wx.ID_ANY, u"Password dan NIM anda salah", wx.DefaultPosition, wx.DefaultSize, wx.TE_CENTER|wx.TE_READONLY )
-		bSizer8.Add( self.m_textCtrl4, 0, wx.ALIGN_CENTER|wx.ALL|wx.EXPAND, 5 )
+		self.m_textCtrl4 = wx.TextCtrl( self, wx.ID_ANY, u"Email atau password yang anda masukkan salah!", wx.DefaultPosition, wx.DefaultSize, wx.TE_CENTER|wx.TE_READONLY )
+		bSizer8.Add( self.m_textCtrl4, 0, wx.ALL|wx.EXPAND, 5 )
 
 		self.m_textCtrl5 = wx.TextCtrl( self, wx.ID_ANY, u"Tekan OK untuk kembali ke halaman login", wx.DefaultPosition, wx.DefaultSize, wx.TE_CENTER|wx.TE_READONLY )
-		bSizer8.Add( self.m_textCtrl5, 0, wx.ALIGN_CENTER|wx.ALL|wx.EXPAND, 5 )
+		bSizer8.Add( self.m_textCtrl5, 0, wx.ALL|wx.EXPAND, 5 )
 
 
 		bSizer8.Add( ( 0, 0), 1, wx.EXPAND, 5 )
